@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import PopulationTable from './components/PopulationTable';
+import FriendshipUploader from './components/FriendshipUploader';
+import { groupPrefectures } from './utils/groupingAlgorithm';
 
-function App() {
+const App = () => {
+  const [friendshipData, setFriendshipData] = useState([]);
+  const [groups, setGroups] = useState([]);
+
+  const handleFileLoaded = (data) => {
+    setFriendshipData(data);
+    const grouped = groupPrefectures(data);
+    setGroups(grouped);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Population Data</h1>
+      <PopulationTable groups={groups} />
+      <h2>Upload Friendship CSV</h2>
+      <FriendshipUploader onFileLoaded={handleFileLoaded} />
     </div>
   );
-}
+};
 
 export default App;
