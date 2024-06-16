@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* PopulationTable Styles */
+  .population-table-container {
+    flex: 1 1 45%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    min-width: 300px;
+  }
+  
+  .years-table, .prefectures-table {
+    overflow-y: auto;
+    max-height: 400px;
+  }
+  
+  .years-table table, .prefectures-table table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .years-table th, .years-table td,
+  .prefectures-table th, .prefectures-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .years-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .prefectures-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .prefectures-table td {
+    writing-mode: horizontal-tb;
+    text-align: center;
+    padding: 5px;
+    white-space: nowrap;
+  }
+  
+  /* FriendshipUploader Styles */
+  .friendship-uploader {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .upload-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .choose-file-label {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  #file-upload {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .upload-button {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .upload-button:hover {
+    background-color: #45a049;
+  }
+  
+  .result-section {
+    margin-top: 20px;
+  }
+  
+  .result-section h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .result-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .result-section li {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  
