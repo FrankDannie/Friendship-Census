@@ -61,9 +61,5 @@ export const groupPrefectures = (friendshipData) => {
 
   const bestGroups = findBestGroups();
   groups.push(...bestGroups);
-
-  console.log('Friendship Levels:', friendshipLevels); // Debug output
-  console.log('Best Groups:', groups); // Debug output
-
   return groups;
 };
