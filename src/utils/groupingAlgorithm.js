@@ -3,8 +3,7 @@ export const groupPrefectures = (friendshipData) => {
   const friendshipLevels = {};
 
   // Parse the CSV data to create the friendship levels matrix
-  const headers = Object.keys(friendshipData[0]); // Assuming headers are correctly parsed
-  const prefectures = headers.slice(1); // Get prefecture names from the header
+  const headers = Object.keys(friendshipData[0]); 
 
   for (let i = 0; i < n; i++) {
     const row = friendshipData[i];
