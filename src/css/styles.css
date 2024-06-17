@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f7f6;
@@ -8,51 +9,68 @@ body {
     align-items: flex-start;
     min-height: 100vh;
   }
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
   
   .container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    max-width: 1200px; /* Added max-width for container */
+    margin: 0 auto; /* Center aligning the container */
   }
   
   /* PopulationTable Styles */
   .population-table-container {
-    flex: 1 1 45%;
+    flex: 1 1 100%; /* Full width on small screens */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 500px;
+    max-width: 500px; /* Adjusted max-width */
     min-width: 300px;
   }
   
-  .years-table, .prefectures-table {
+  .years-table,
+  .prefectures-table {
     overflow-y: auto;
     max-height: 400px;
   }
   
-  .years-table table, .prefectures-table table {
+  .years-table table,
+  .prefectures-table table {
     border-collapse: collapse;
     width: 100%;
   }
   
-  .years-table th, .years-table td,
-  .prefectures-table th, .prefectures-table td {
+  .years-table th,
+  .years-table td,
+  .prefectures-table th,
+  .prefectures-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
   }
   
   .years-table th {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
-  }
-  
-  .prefectures-table th {
-    background-color: #4CAF50;
-    color: white;
-  }
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    }
+
+    .prefectures-table th {
+      background-color: #4caf50;
+      color: white;
+      position: sticky;
+      left: 0; 
+      z-index: 2; 
+    }
   
   .prefectures-table td {
     writing-mode: horizontal-tb;
@@ -63,6 +81,7 @@ body {
   
   /* FriendshipUploader Styles */
   .friendship-uploader {
+    flex: 1 1 100%; /* Full width on small screens */
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
@@ -106,7 +125,7 @@ body {
     margin: 0 auto;
     padding: 12px 20px;
     font-size: 18px;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 4px;
@@ -135,6 +154,14 @@ body {
   .result-section li {
     font-size: 16px;
     margin-bottom: 5px;
+  }
+  
+  @media (max-width: 550px) {
+    .population-table-container,
+    .friendship-uploader {
+      max-width: 300px; /* Adjusted max-width */
+      min-width: 100px; /* Full width on small screens */
+    }
   }
   
   
