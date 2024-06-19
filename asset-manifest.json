@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Friendship-Census/static/css/main.23553e23.css",
-    "main.js": "/Friendship-Census/static/js/main.cbe6cd5e.js",
+    "main.css": "/Friendship-Census/static/css/main.0c31d369.css",
+    "main.js": "/Friendship-Census/static/js/main.171f84f1.js",
     "static/js/453.6432168e.chunk.js": "/Friendship-Census/static/js/453.6432168e.chunk.js",
     "index.html": "/Friendship-Census/index.html",
-    "main.23553e23.css.map": "/Friendship-Census/static/css/main.23553e23.css.map",
-    "main.cbe6cd5e.js.map": "/Friendship-Census/static/js/main.cbe6cd5e.js.map",
+    "main.0c31d369.css.map": "/Friendship-Census/static/css/main.0c31d369.css.map",
+    "main.171f84f1.js.map": "/Friendship-Census/static/js/main.171f84f1.js.map",
     "453.6432168e.chunk.js.map": "/Friendship-Census/static/js/453.6432168e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.23553e23.css",
-    "static/js/main.cbe6cd5e.js"
+    "static/css/main.0c31d369.css",
+    "static/js/main.171f84f1.js"
   ]
 }
