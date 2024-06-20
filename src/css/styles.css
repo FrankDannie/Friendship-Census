@@ -9,6 +9,7 @@ body {
   align-items: flex-start;
   min-height: 100vh;
 }
+
 h1 {
   text-align: center;
   font-size: 30px;
@@ -18,85 +19,69 @@ h1 {
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  max-width: 1200px; /* Added max-width for container */
-  margin: 0 auto; /* Center aligning the container */
+  gap: 20px; /* Gap between items */
+  justify-content: center; /* Center align items */
+  max-width: 1200px; /* Maximum width */
+  margin: 0 auto; /* Center align the container */
+  padding: 20px; /* Padding around the container */
 }
 
-/* PopulationTable Styles */
 .population-table-container {
   flex: 1 1 100%; /* Full width on small screens */
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 500px; /* Adjusted max-width */
-  min-width: 300px;
+  padding: 0px;
+  max-width: 1200px; /* Adjusted max-width to match container */
+  overflow-x: auto; /* Allow horizontal scrolling */
 }
 
-.years-table,
-.prefectures-table {
-  overflow-y: auto;
-  max-height: 400px;
-}
-
-.years-table table,
-.prefectures-table table {
+.population-table-container table {
   border-collapse: collapse;
   width: 100%;
 }
 
-.years-table th,
-.years-table td,
-.prefectures-table th,
-.prefectures-table td {
+.population-table-container th,
+.population-table-container td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
 }
 
-.years-table th {
+.population-table-container th {
   background-color: #4caf50;
   color: white;
   position: sticky;
   top: 0;
+}
+
+.population-table-container td:first-child,
+.population-table-container th:first-child {
+  position: sticky;
+  left: 0;
+  background-color: #4caf50;
+  color: white;
   z-index: 1;
-  }
-
-  .prefectures-table th {
-    background-color: #4caf50;
-    color: white;
-    position: sticky;
-    left: 0; 
-    z-index: 2; 
-  }
-
-.prefectures-table td {
-  writing-mode: horizontal-tb;
-  text-align: center;
-  padding: 5px;
-  white-space: nowrap;
 }
 
 /* FriendshipUploader Styles */
 .friendship-uploader {
   flex: 1 1 100%; /* Full width on small screens */
   max-width: 500px;
-  margin: 0 auto;
+  margin: 20px auto; /* Center align with top padding */
   padding: 20px;
   background-color: #f0f0f0;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.friendship-uploader h2 {
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-.upload-section {
+.friendship-uploader .upload-section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,12 +89,12 @@ h2 {
   margin-bottom: 20px;
 }
 
-.choose-file-label {
+.friendship-uploader .choose-file-label {
   font-size: 18px;
   margin-bottom: 10px;
 }
 
-#file-upload {
+.friendship-uploader #file-upload {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -118,7 +103,7 @@ h2 {
   max-width: 300px;
 }
 
-.upload-button {
+.friendship-uploader .upload-button {
   display: block;
   width: 100%;
   max-width: 300px;
@@ -133,34 +118,33 @@ h2 {
   transition: background-color 0.3s;
 }
 
-.upload-button:hover {
+.friendship-uploader .upload-button:hover {
   background-color: #45a049;
 }
 
-.result-section {
+.friendship-uploader .result-section {
   margin-top: 20px;
 }
 
-.result-section h3 {
+.friendship-uploader .result-section h3 {
   font-size: 20px;
   margin-bottom: 10px;
 }
 
-.result-section ul {
+.friendship-uploader .result-section ul {
   list-style-type: none;
   padding: 0;
 }
 
-.result-section li {
+.friendship-uploader .result-section li {
   font-size: 16px;
   margin-bottom: 5px;
 }
 
+/* Media Query for smaller screens */
 @media (max-width: 550px) {
-  .population-table-container,
-  .friendship-uploader {
+  .population-table-container {
     max-width: 300px; /* Adjusted max-width */
     min-width: 100px; /* Full width on small screens */
   }
 }
-

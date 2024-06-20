@@ -17,7 +17,7 @@ const App = () => {
     <div className="App">
       <h1>Population Data</h1>
       <PopulationTable groups={groups} />
-      <h2>Upload Friendship CSV</h2>
+      <h1>Upload Friendship CSV</h1>
       <FriendshipUploader onFileLoaded={handleFileLoaded} />
     </div>
   );
