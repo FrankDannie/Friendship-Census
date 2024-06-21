@@ -82,6 +82,9 @@ h1 {
   z-index: 5; /* Ensure the top row of headers stay above other rows */
 }
 
+.highlighted {
+  background-color: lightblue;
+}
 
 /* FriendshipUploader Styles */
 .friendship-uploader {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchPopulationDataByPrefecture, fetchPrefectures } from '../services/resasService';
 import '../css/styles.css';
 
-const PopulationTable = () => {
+const PopulationTable = ({ groups }) => {
   const [populationData, setPopulationData] = useState({});
   const [prefectures, setPrefectures] = useState([]);
   const [error, setError] = useState(null);
@@ -50,6 +50,25 @@ const PopulationTable = () => {
 
   const years = getYears();
 
+  const normalizeName = (name) => {
+    return name.trim().replace(/,$/, '');
+  };
+
+  const isHighlighted = (prefecture) => {
+    const normalizedPrefecture = normalizeName(prefecture).toLowerCase();
+    const highlighted = groups.some(group => {
+      const groupNormalized = group.map(name => normalizeName(name).toLowerCase());
+      console.log("Comparing", normalizedPrefecture, "with group", groupNormalized);
+      return groupNormalized.includes(normalizedPrefecture);
+    });
+    if (highlighted) {
+      console.log("Highlighting prefecture:", normalizedPrefecture);
+    } else {
+      console.log("Not highlighting prefecture:", normalizedPrefecture);
+    }
+    return highlighted;
+  };
+
   return (
     <div className="container">
       <div className="population-table-container">
@@ -58,7 +77,12 @@ const PopulationTable = () => {
             <tr>
               <th>Year</th>
               {prefectures.map(prefecture => (
-                <th key={prefecture.prefCode}>{prefecture.prefName}</th>
+                <th
+                  key={prefecture.prefCode}
+                  className={isHighlighted(prefecture.prefName) ? 'highlighted' : ''}
+                >
+                  {prefecture.prefName}
+                </th>
               ))}
             </tr>
           </thead>
@@ -67,7 +91,10 @@ const PopulationTable = () => {
               <tr key={year}>
                 <td>{year}</td>
                 {prefectures.map(prefecture => (
-                  <td key={prefecture.prefCode}>
+                  <td
+                    key={prefecture.prefCode}
+                    className={isHighlighted(prefecture.prefName) ? 'highlighted' : ''}
+                  >
                     {populationData[prefecture.prefName][0].data.find(entry => entry.year === year)?.value || 0}
                   </td>
                 ))}

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Papa from 'papaparse';
-import { groupPrefectures } from '../utils/groupingAlgorithm';
 import '../css/styles.css';
 
-const FriendshipUploader = () => {
-  const [bestGroups, setBestGroups] = useState([]);
+const FriendshipUploader = ({ onFileLoaded }) => {
   const [uploading, setUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [bestGroups, setBestGroups] = useState([]);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -31,9 +30,15 @@ const FriendshipUploader = () => {
   };
 
   const handleFileLoaded = (result) => {
-    const friendshipData = result.data;
-    const calculatedGroups = groupPrefectures(friendshipData);
-    setBestGroups(calculatedGroups);
+    const friendshipData = result.data.map(row => {
+      const cleanedRow = {};
+      for (const key in row) {
+        cleanedRow[key.trim().replace(/,$/, '')] = row[key];
+      }
+      return cleanedRow;
+    });
+    const groups = onFileLoaded(friendshipData);
+    setBestGroups(groups);
     setUploading(false);
   };
 
