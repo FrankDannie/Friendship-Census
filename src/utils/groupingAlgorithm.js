@@ -1,3 +1,5 @@
+// Example enhancement: Adding comments and error handling
+
 export const groupPrefectures = (friendshipData) => {
   const n = friendshipData.length;
   const friendshipLevels = {};
@@ -43,7 +45,7 @@ export const groupPrefectures = (friendshipData) => {
     for (let i = 0; i < allPrefectures.length; i++) {
       for (let j = i + 1; j < allPrefectures.length; j++) {
         for (let k = j + 1; k < allPrefectures.length; k++) {
-          const currentGroup = [allPrefectures[i], allPrefectures[j], allPrefectures[k]];
+          const currentGroup = [allPrefectures[i], allPrefectures[j], allPrefectures[k]].filter(pref => pref); // Filter out undefined values
           const currentFriendship = calculateGroupFriendship(currentGroup);
 
           if (currentFriendship > maxFriendship) {
@@ -59,7 +61,13 @@ export const groupPrefectures = (friendshipData) => {
     return bestGroups;
   };
 
-  const bestGroups = findBestGroups();
-  groups.push(...bestGroups);
+  try {
+    const bestGroups = findBestGroups();
+    groups.push(...bestGroups);
+  } catch (error) {
+    console.error('Error in grouping algorithm:', error);
+    // Handle or log error appropriately
+  }
+
   return groups;
 };

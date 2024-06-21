@@ -6,7 +6,7 @@ const PopulationTable = () => {
   const [populationData, setPopulationData] = useState({});
   const [prefectures, setPrefectures] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true); // State to track loading status
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +20,10 @@ const PopulationTable = () => {
           populationData[prefecture.prefName] = data;
         }
         setPopulationData(populationData);
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
       } catch (error) {
         setError('Failed to fetch data.');
-        setLoading(false); // Set loading to false on error
+        setLoading(false);
       }
     };
 
@@ -34,15 +34,21 @@ const PopulationTable = () => {
     return <div>{error}</div>;
   }
 
-  const ageGroups = [
-    "年少人口", // Young population
-    "生産年齢人口", // Working-age population
-    "老年人口" // Elderly population
-  ];
-
   if (loading) {
-    return <div className="loading-symbol">Loading...</div>; // Placeholder for loading indicator
+    return <div className="loading-symbol">Loading...</div>;
   }
+
+  const getYears = () => {
+    const years = new Set();
+    Object.values(populationData).forEach(prefData => {
+      prefData[0].data.forEach(entry => {
+        years.add(entry.year);
+      });
+    });
+    return Array.from(years).sort((a, b) => b - a);
+  };
+
+  const years = getYears();
 
   return (
     <div className="container">
@@ -50,19 +56,19 @@ const PopulationTable = () => {
         <table>
           <thead>
             <tr>
-              <th>Age Group</th>
+              <th>Year</th>
               {prefectures.map(prefecture => (
                 <th key={prefecture.prefCode}>{prefecture.prefName}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {ageGroups.map(ageGroup => (
-              <tr key={ageGroup}>
-                <td>{ageGroup}</td>
+            {years.map(year => (
+              <tr key={year}>
+                <td>{year}</td>
                 {prefectures.map(prefecture => (
                   <td key={prefecture.prefCode}>
-                    {populationData[prefecture.prefName]?.find(data => data.label === ageGroup)?.data[0]?.value || 0}
+                    {populationData[prefecture.prefName][0].data.find(entry => entry.year === year)?.value || 0}
                   </td>
                 ))}
               </tr>
