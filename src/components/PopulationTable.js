@@ -54,19 +54,15 @@ const PopulationTable = ({ groups }) => {
     return name.trim().replace(/,$/, '');
   };
 
-  const isHighlighted = (prefecture) => {
+  const getGroupIndex = (prefecture) => {
     const normalizedPrefecture = normalizeName(prefecture).toLowerCase();
-    const highlighted = groups.some(group => {
-      const groupNormalized = group.map(name => normalizeName(name).toLowerCase());
-      console.log("Comparing", normalizedPrefecture, "with group", groupNormalized);
-      return groupNormalized.includes(normalizedPrefecture);
-    });
-    if (highlighted) {
-      console.log("Highlighting prefecture:", normalizedPrefecture);
-    } else {
-      console.log("Not highlighting prefecture:", normalizedPrefecture);
+    for (let i = 0; i < groups.length; i++) {
+      const groupNormalized = groups[i].map(name => normalizeName(name).toLowerCase());
+      if (groupNormalized.includes(normalizedPrefecture)) {
+        return i;
+      }
     }
-    return highlighted;
+    return -1;
   };
 
   return (
@@ -79,7 +75,9 @@ const PopulationTable = ({ groups }) => {
               {prefectures.map(prefecture => (
                 <th
                   key={prefecture.prefCode}
-                  className={isHighlighted(prefecture.prefName) ? 'highlighted' : ''}
+                  className={
+                    getGroupIndex(prefecture.prefName) !== -1 ? `highlighted-${getGroupIndex(prefecture.prefName)}` : ''
+                  }
                 >
                   {prefecture.prefName}
                 </th>
@@ -93,7 +91,9 @@ const PopulationTable = ({ groups }) => {
                 {prefectures.map(prefecture => (
                   <td
                     key={prefecture.prefCode}
-                    className={isHighlighted(prefecture.prefName) ? 'highlighted' : ''}
+                    className={
+                      getGroupIndex(prefecture.prefName) !== -1 ? `highlighted-${getGroupIndex(prefecture.prefName)}` : ''
+                    }
                   >
                     {populationData[prefecture.prefName][0].data.find(entry => entry.year === year)?.value || 0}
                   </td>

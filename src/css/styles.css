@@ -82,9 +82,18 @@ h1 {
   z-index: 5; /* Ensure the top row of headers stay above other rows */
 }
 
-.highlighted {
+.highlighted-0 {
   background-color: lightblue;
 }
+
+.highlighted-1 {
+  background-color: lightyellow;
+}
+
+.highlighted-2 {
+  background-color: lightpink;
+}
+
 
 /* FriendshipUploader Styles */
 .friendship-uploader {

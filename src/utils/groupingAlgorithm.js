@@ -19,13 +19,11 @@ export const groupPrefectures = (friendshipData) => {
     }
   }
 
-  const groups = [];
-
   const calculateGroupFriendship = (group) => {
     let totalFriendship = 0;
     for (let i = 0; i < group.length; i++) {
       for (let j = i + 1; j < group.length; j++) {
-        totalFriendship += friendshipLevels[group[i]][group[j]] || 0;
+        totalFriendship += (friendshipLevels[group[i]][group[j]] || 0) + (friendshipLevels[group[j]][group[i]] || 0);
       }
     }
     return totalFriendship;
@@ -33,34 +31,30 @@ export const groupPrefectures = (friendshipData) => {
 
   const findBestGroups = () => {
     const allPrefectures = Object.keys(friendshipLevels);
-    let bestGroups = [];
-    let maxFriendship = -Infinity;
+    const allGroups = [];
 
     for (let i = 0; i < allPrefectures.length; i++) {
       for (let j = i + 1; j < allPrefectures.length; j++) {
         for (let k = j + 1; k < allPrefectures.length; k++) {
           const currentGroup = [allPrefectures[i], allPrefectures[j], allPrefectures[k]].filter(pref => pref);
           const currentFriendship = calculateGroupFriendship(currentGroup);
-
-          if (currentFriendship > maxFriendship) {
-            bestGroups = [currentGroup];
-            maxFriendship = currentFriendship;
-          } else if (currentFriendship === maxFriendship) {
-            bestGroups.push(currentGroup);
-          }
+          allGroups.push({ group: currentGroup, friendship: currentFriendship });
         }
       }
     }
 
-    return bestGroups;
+    // Sort groups by friendship level in descending order
+    allGroups.sort((a, b) => b.friendship - a.friendship);
+    console.log(allGroups)
+
+    // Get the top 3 groups
+    return allGroups.slice(0, 3).map(group => group.group);
   };
 
   try {
-    const bestGroups = findBestGroups();
-    groups.push(...bestGroups);
+    return findBestGroups();
   } catch (error) {
     console.error('Error in grouping algorithm:', error);
+    return [];
   }
-
-  return groups;
 };
